@@ -18,6 +18,9 @@
   "homepage": "https://github.com/matt-barton/long-distance-strider#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.2"
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.9",
+    "underscore": "^1.8.3"
   }
 }
