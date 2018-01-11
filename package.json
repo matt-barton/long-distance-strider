@@ -7,8 +7,10 @@
     "build-css": "stylus client/src/stylesheets/index.styl -o client/public/css",
     "watch-css": "stylus client/src/stylesheets/index.styl -o client/public/css -w",
     "clean": "rm -rf client/public/css && mkdir -p client/public/css",
+    "clean-win": "rmdir -recurse -force client\\public\\css && mkdir -p client\\public\\css",
     "build": "npm run clean && npm run build-css",
-    "watch": "npm run clean && npm run watch-css & nodemon app -e js,jade",
+    "watch": "npm run clean && npm run watch-css & nodemon app -e js,pug",
+    "watch-win": "npm run build-css & nodemon app -e js,pug",
     "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,9 +31,9 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "jade": "^1.11.0",
     "mongoose": "^4.13.9",
     "passport": "^0.4.0",
+    "pug": "^2.0.0-rc.4",
     "stylus": "^0.54.5",
     "underscore": "^1.8.3"
   },
