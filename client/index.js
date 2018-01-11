@@ -9,7 +9,7 @@ app.get('/', isAuth, (req, res, next) => {
   try {
     Race.find({ ignore: false }, { reportName: 1, processed: 1 }).exec().then(races => {
       let html = pug.compileFile('./client/src/templates/race_list.pug')({
-        title: 'Home',
+        title: 'LDS // Home',
         auth: req.isAuthenticated(),
         newRaces: _(races).where({ processed: false }),
         processedRaces: _(races).where({ processed: true })
@@ -21,6 +21,21 @@ app.get('/', isAuth, (req, res, next) => {
   }
 });
 
+app.get('/race/:id', isAuth, (req, res, next) => {
+  try {
+    Race.findOne({ _id: req.params.id }).exec().then(race => {
+      let html = pug.compileFile('./client/src/templates/race_details.pug')({
+        title: 'LDS // ' + race.reportName,
+        auth: req.isAuthenticated(),
+        race: race
+      });
+      res.send(html);
+    });
+  }
+  catch (e) {
+    next(e);
+  }
+});
 /*
 app.get('/login', (req, res, next) => {
   try {
