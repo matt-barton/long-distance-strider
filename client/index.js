@@ -7,9 +7,8 @@ const express = require('express'),
 
 app.get('/', isAuth, (req, res, next) => {
   try {
-    Race.find({ ignore: false }, {url: 1, processed: 1}).exec().then(races => {
-      console.log(races);
-      var html = pug.compileFile('./client/src/templates/homepage.pug')({
+    Race.find({ ignore: false }, { reportName: 1, processed: 1 }).exec().then(races => {
+      let html = pug.compileFile('./client/src/templates/race_list.pug')({
         title: 'Home',
         auth: req.isAuthenticated(),
         newRaces: _(races).where({ processed: false }),

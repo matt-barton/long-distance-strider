@@ -1,0 +1,19 @@
+extend default
+
+block content
+
+  div.menu
+    p.
+      New Races
+
+    ul
+      each race in newRaces
+        li: a(href='/race/' + race._id) #{race.reportName}
+
+  div.menu
+    p.
+      Processed Races
+
+    ul
+      each race in processedRaces
+        li: a(href='/race/' + race._id) #{race.reportName}
