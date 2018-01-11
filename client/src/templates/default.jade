@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/css/index.css')
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+    script(src='/js/app.js')
+    title=title
+
+  body
+    .header
+      h1.page-title Long Distance Strider
+
+    ul.nav
+      li: a(href='/') Races
+      li: a(href='/runners') Runners
+      if auth
+        li: a(href='/auth/logout') Logout
+
+    .main-content
+      block content
+
+    .footer
+      p Copyright © 2018 Matt Barton
