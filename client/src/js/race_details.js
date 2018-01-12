@@ -8,11 +8,9 @@ $('document').ready(function () {
         id: $('#race_id').val()
       },
       success: function () {
-        console.log('success');
         window.location.replace('/');
       },
       error: function (e) {
-        console.log(e);
         alert(e.message);
       }
     });
