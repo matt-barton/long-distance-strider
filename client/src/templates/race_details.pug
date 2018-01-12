@@ -4,10 +4,27 @@ block content
 
   div
     p.bold.
-      #{race.reportName}
+      #{reportName}
 
-    p.
-      Distance: #{race.distance}mi
+    div.report
+      !=reportHtml
+    p
+      if distance
+        p Distance: #{distance} mi
+      else
+        p Unable to determine race distance
 
-    p.
-      Runners: #{race.runners}
+    p
+      if runners.length > 0
+        table
+          thead
+            tr
+              th.
+                Runners
+          tbody
+            each runner in runners
+              tr
+                td 
+                  !=runner
+      else
+        p Unable to determine runners

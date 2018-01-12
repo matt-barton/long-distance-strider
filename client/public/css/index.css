@@ -43,6 +43,9 @@ body {
   line-height: 1.6;
   margin-bottom: 1em;
 }
+.main-content th {
+  text-align: left;
+}
 .footer {
   margin: 50px auto;
   max-width: 600px;
@@ -123,4 +126,22 @@ body {
 }
 .bold {
   font-weight: bold;
+}
+div.report {
+  font-size: 10px;
+  height: 150px;
+  width: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px dotted #000;
+}
+div.report img {
+  display: none;
+}
+div.report table {
+  border: 1px solid #808080;
+  margin-left: 20px;
+}
+div.report table td {
+  padding: 2px;
 }

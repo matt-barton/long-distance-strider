@@ -24,11 +24,10 @@ app.get('/', isAuth, (req, res, next) => {
 app.get('/race/:id', isAuth, (req, res, next) => {
   try {
     Race.findOne({ _id: req.params.id }).exec().then(race => {
-      let html = pug.compileFile('./client/src/templates/race_details.pug')({
+      let html = pug.compileFile('./client/src/templates/race_details.pug')(_({
         title: 'LDS // ' + race.reportName,
         auth: req.isAuthenticated(),
-        race: race
-      });
+      }).extend(race));
       res.send(html);
     });
   }
