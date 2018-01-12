@@ -145,3 +145,10 @@ div.report table {
 div.report table td {
   padding: 2px;
 }
+button {
+  padding: 5px;
+  border: 1 solid #000;
+}
+button:hover {
+  text-decoration: underline;
+}

@@ -1,1 +1,1 @@
-var x=2;function test(t){x+=t}
+$("document").ready(function(){$("div#race_details button#ignore").click(function(){alert("bang")})});

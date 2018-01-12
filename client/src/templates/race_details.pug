@@ -2,7 +2,7 @@ extend default
 
 block content
 
-  div
+  div#race_details
     p.bold.
       #{reportName}
 
@@ -28,3 +28,7 @@ block content
                   !=runner
       else
         p Unable to determine runners
+
+
+    unless published===true
+      button(id='ignore') Ignore Race
