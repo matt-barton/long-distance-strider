@@ -35,6 +35,20 @@ app.get('/race/:id', isAuth, (req, res, next) => {
     next(e);
   }
 });
+
+app.post('/ignore_race', isAuth, (req, res, next) => {
+  try {
+    Race.update({ _id: req.body.id }, { $set: { ignore: true }}).exec().then(() => {
+      console.log(1);
+      res.sendStatus(200);
+    });
+  }
+  catch (e) {
+    console.log(2);
+    next(e);
+  }
+});
+
 /*
 app.get('/login', (req, res, next) => {
   try {

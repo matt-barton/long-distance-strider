@@ -1,1 +1,1 @@
-$("document").ready(function(){$("div#race_details button#ignore").click(function(){alert("bang")})});
+$("document").ready(function(){$("div#race_details button#ignore").click(function(){$.post({url:"/ignore_race",data:{id:$("#race_id").val()},success:function(){console.log("success"),window.location.replace("/")},error:function(o){console.log(o),alert(o.message)}})})});
