@@ -3,7 +3,8 @@ const express = require('express'),
   pug = require('pug'),
   _ = require('underscore'),
   Race = require('../lib/db/race'),
-  isAuth = require('../lib/auth_middleware');
+  isAuth = require('../lib/auth_middleware'),
+  downloadNewRaces = require('../lib/download_new_races');
 
 app.get('/', isAuth, (req, res, next) => {
   try {
@@ -39,12 +40,21 @@ app.get('/race/:id', isAuth, (req, res, next) => {
 app.post('/ignore_race', isAuth, (req, res, next) => {
   try {
     Race.update({ _id: req.body.id }, { $set: { ignore: true }}).exec().then(() => {
-      console.log(1);
       res.sendStatus(200);
     });
   }
   catch (e) {
-    console.log(2);
+    next(e);
+  }
+});
+
+app.post('/get-new-races', isAuth, (req, res, next) => {
+  try {
+    downloadNewRaces().then(newRaces => {
+      res.status(200).json(newRaces);
+    });
+  }
+  catch (e) {
     next(e);
   }
 });

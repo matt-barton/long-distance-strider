@@ -1,5 +1,3 @@
-
-/* Source: client/src/js/jquery.blockUI.js */
 /*!
  * jQuery blockUI plugin
  * Version 2.70.0-2014.11.23
@@ -620,53 +618,3 @@
     }
   
   })();
-
-/* Source: client/src/js/race_details.js */
-$('document').ready(function () {
-  var ignoreButton = $('div#race_details button#ignore');
-
-  ignoreButton.click(function () {
-    $.blockUI({ message: '<img src="/images/loading.gif" />' });
-    $.post({
-      url: '/ignore_race',
-      data: {
-        id: $('#race_id').val()
-      },
-      success: function () {
-        $.unblockUI();
-        alertify.alert('Ignore Race', 'Race marked as ignored', function () {
-          window.location.replace('/');
-        });
-      },
-      error: function (e) {
-        alertify.alert('Error!', e.message);
-      }
-    });
-  });
-})
-
-/* Source: client/src/js/race_list.js */
-$('document').ready(function () {
-  var newRacesButton = $('button#get-new-races');
-
-  newRacesButton.click(function () {
-    $.blockUI({ message: '<img src="/images/loading.gif" />' });
-    $.post({
-      url: '/get-new-races',
-      success: function (res) {
-        $.unblockUI();
-        var msg = (res.length > 0 ? res.length : 'No') +
-          ' new race' +
-          (res.length === 1 ? '' : 's') +
-          ' downloaded';
-        alertify.alert('New Races', msg, function () {
-          window.location.replace('/');
-        });
-      },
-      error: function (e) {
-        $.unblockUI();
-        alertify.alert('Error!', e.message);
-      }
-    });
-  });
-});
