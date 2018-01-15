@@ -58,5 +58,5 @@ typings/
 .env
 
 # built js resources
-client\public\js\app.js
-client\src\js\built.js
+./client/public/js/app.js
+./client/src/js/built.js
