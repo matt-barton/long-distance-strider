@@ -58,12 +58,20 @@ typings/
 .env
 
 # built js resources
-./client/public/js/app.js
 ./client/src/js/built.js
 ./client/build/built.js
 .\\client\\build\\built.js
 .\client\build\built.js
 client/build/built.js
-client/public/js/app.js
-.\\client\\public\\js\\app.js
+
+./client/public/js/app.js
 .\client\public\js\app.js
+.\\client\\public\\js\\app.js
+client\public\js\app.js
+client/public/js/app.js
+
+./client/public/css/index.css
+.\client\public\css\index.css
+.\\client\\public\\css\\index.css
+client\public\css\index.css
+client/public/css/index.css
