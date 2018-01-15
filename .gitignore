@@ -63,3 +63,4 @@ typings/
 ./client/build/built.js
 .\\client\\build\\built.js
 .\client\build\built.js
+client/build/built.js
