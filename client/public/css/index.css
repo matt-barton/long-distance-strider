@@ -148,6 +148,7 @@ div.report table td {
 button {
   padding: 5px;
   border: 1 solid #000;
+  margin-right: 5px;
 }
 button:hover {
   text-decoration: underline;

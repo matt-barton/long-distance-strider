@@ -8,12 +8,12 @@ module.exports = function(grunt){
       },
       dist: {
         src: [ 'client/src/js/*.js' ],
-        dest: 'client/src/js/built.js'
+        dest: 'client/build/built.js'
       } 
     },
     uglify: {
       dist: {
-        src: 'client/src/js/built.js',
+        src: 'client/build/built.js',
         dest: 'client/public/js/app.js'
       }
     },

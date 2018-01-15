@@ -3,6 +3,7 @@ const express = require('express'),
   pug = require('pug'),
   _ = require('underscore'),
   Race = require('../lib/db/race'),
+  Runner = require('../lib/db/runner'),
   isAuth = require('../lib/auth_middleware'),
   downloadNewRaces = require('../lib/download_new_races');
 
@@ -52,6 +53,47 @@ app.post('/get-new-races', isAuth, (req, res, next) => {
   try {
     downloadNewRaces().then(newRaces => {
       res.status(200).json(newRaces);
+    });
+  }
+  catch (e) {
+    next(e);
+  }
+});
+
+app.post('/process_race', isAuth, (req, res, next) => {
+  try {
+    Race.findOne({ _id: req.body.id }).exec().then((race) => {
+      let promises = race.runners.map(runnerName => {
+        return Runner.findOne({ name: runnerName }).exec().then(rec => {
+          if (rec) {
+            return Runner.update({ _id: rec._id }, {
+              $push: { 
+                races: {
+                  _id: race._id,
+                  name: race.reportName,
+                  distance: race.distance
+                }},
+              totalDistance: rec.totalDistance + race.distance });
+          }
+          else {
+            return new Runner({
+              name: runnerName,
+              races: [{
+                _id: race._id,
+                name: race.reportName,
+                distance: race.distance
+              }],
+              totalDistance: race.distance
+            }).save();
+          }
+        });
+      });
+
+      return Promise.all(promises).then(() => {
+        Race.update({ _id: req.body.id }, { $set: { processed: true }}).exec().then(() => {
+          res.sendStatus(200);
+        });
+      });
     });
   }
   catch (e) {

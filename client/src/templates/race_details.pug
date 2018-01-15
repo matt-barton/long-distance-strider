@@ -31,5 +31,8 @@ block content
 
 
     unless published===true
-      button(id='ignore') Ignore Race
+      button(id='ignore', title='Mark race as ignored') Ignore
+      if runners.length > 0 && distance
+        button(id='process', title='Update runners with race distance') Process
+      button(id='mark-processed', title='Mark as processed without updating runners') Mark as Processed
       input(type='hidden', value=_id, id='race_id')
