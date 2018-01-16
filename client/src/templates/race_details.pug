@@ -29,8 +29,7 @@ block content
       else
         p Unable to determine runners
 
-
-    unless published===true
+    unless processed
       button(id='ignore', title='Mark race as ignored') Ignore
       if runners.length > 0 && distance
         button(id='process', title='Update runners with race distance') Process
