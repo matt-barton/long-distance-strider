@@ -101,6 +101,21 @@ app.post('/process_race', isAuth, (req, res, next) => {
   }
 });
 
+app.get('/runners', isAuth, (req, res, next) => {
+  try {
+    Runner.find().sort({ totalDistance: -1 }).exec().then(runners => {
+      let html = pug.compileFile('./client/src/templates/runners_list.pug')({
+        title: 'LDS // Runners',
+        auth: req.isAuthenticated(),
+        runners: runners
+      });
+      res.send(html);
+    });
+  }
+  catch (e) {
+    next(e);
+  }
+});
 /*
 app.get('/login', (req, res, next) => {
   try {

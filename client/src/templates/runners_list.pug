@@ -1,0 +1,20 @@
+extend default
+
+block content
+
+  div.runnersList
+    if runners.length > 0
+      table
+        thead
+          tr
+            th.
+              Name
+            th.
+              Total Distance
+        tbody
+          each runner in runners
+            tr
+              td 
+                !=runner.name
+              td
+                !=runner.totalDistance
