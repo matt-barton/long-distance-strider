@@ -1,0 +1,24 @@
+extend default
+
+block content
+
+  div#runner_details
+    p.bold.
+      #{name}
+
+    p
+      if races.length > 0
+        table
+          thead
+            tr
+              th.
+                Race
+              th.
+                Distance
+          tbody
+            each race in races
+              tr
+                td 
+                  !=race.name
+                td 
+                  !=race.distance

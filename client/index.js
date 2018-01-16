@@ -116,6 +116,22 @@ app.get('/runners', isAuth, (req, res, next) => {
     next(e);
   }
 });
+
+app.get('/runner/:id', isAuth, (req, res, next) => {
+  try {
+    Runner.findOne({ _id: req.params.id }).exec().then(runner => {
+      let html = pug.compileFile('./client/src/templates/runner_details.pug')(_({
+        title: 'LDS // ' + runner.name,
+        auth: req.isAuthenticated(),
+      }).extend(runner));
+      res.send(html);
+    });
+  }
+  catch (e) {
+    next(e);
+  }
+});
+
 /*
 app.get('/login', (req, res, next) => {
   try {

@@ -15,6 +15,6 @@ block content
           each runner in runners
             tr
               td 
-                !=runner.name
+                a(href='/runner/' + runner._id) #{runner.name}
               td
                 !=runner.totalDistance
