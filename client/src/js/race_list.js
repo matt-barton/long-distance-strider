@@ -1,5 +1,5 @@
 $('document').ready(function () {
-  console.log(1);
+
   var newRacesButton = $('button#get-new-races');
 
   newRacesButton.click(function () {
