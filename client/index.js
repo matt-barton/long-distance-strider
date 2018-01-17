@@ -63,9 +63,12 @@ app.post('/get-new-races', isAuth, (req, res, next) => {
 app.post('/process_race', isAuth, (req, res, next) => {
   try {
     Race.findOne({ _id: req.body.id }).exec().then((race) => {
-      let promises = race.runners.map(runnerName => {
+      let newRunners = 0,
+        updatedRunners = 0,
+        promises = race.runners.map(runnerName => {
         return Runner.findOne({ name: runnerName }).exec().then(rec => {
           if (rec) {
+            updatedRunners++;
             return Runner.update({ _id: rec._id }, {
               $push: { 
                 races: {
@@ -76,6 +79,7 @@ app.post('/process_race', isAuth, (req, res, next) => {
               totalDistance: rec.totalDistance + race.distance });
           }
           else {
+            newRunners++;
             return new Runner({
               name: runnerName,
               races: [{
@@ -91,7 +95,10 @@ app.post('/process_race', isAuth, (req, res, next) => {
 
       return Promise.all(promises).then(() => {
         Race.update({ _id: req.body.id }, { $set: { processed: true }}).exec().then(() => {
-          res.sendStatus(200);
+          res.status(200).send({
+            newRunners: newRunners,
+            updatedRunners: updatedRunners
+          });
         });
       });
     });

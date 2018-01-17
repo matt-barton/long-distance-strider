@@ -29,8 +29,13 @@ $('document').ready(function () {
       data: {
         id: $('#race_id').val()
       },
-      success: function () {
-        alertify.alert('Process Race', 'Race processed, runners updated', function () {
+      success: function (result, x) {
+        console.log(result);
+        console.log(x);
+        var updatedMsg = result.updatedRunners > 0 ? (result.updatedRunners + ' runner' + (result.updatedRunners > 0 ? 's' : '') + ' updated.') : '',
+          newMsg = result.newRunners > 0 ? (result.newRunners + ' runner' + (result.newRunners === 1 ? '' : 's') + ' created.'): '',
+          message = 'Race processed. ' + updatedMsg + ' ' + newMsg;
+        alertify.alert('Process Race', message, function () {
           window.location.replace('/');
           $.unblockUI();
         });
