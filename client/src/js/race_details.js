@@ -29,9 +29,7 @@ $('document').ready(function () {
       data: {
         id: $('#race_id').val()
       },
-      success: function (result, x) {
-        console.log(result);
-        console.log(x);
+      success: function (result) {
         var updatedMsg = result.updatedRunners > 0 ? (result.updatedRunners + ' runner' + (result.updatedRunners > 0 ? 's' : '') + ' updated.') : '',
           newMsg = result.newRunners > 0 ? (result.newRunners + ' runner' + (result.newRunners === 1 ? '' : 's') + ' created.'): '',
           message = 'Race processed. ' + updatedMsg + ' ' + newMsg;
