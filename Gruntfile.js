@@ -27,7 +27,7 @@ module.exports = function(grunt){
         tasks: ['concat']
       },
       dist: {
-        files: 'client/public/js/built.js',
+        files: 'client/build/built.js',
         tasks: ['uglify']
       },
     }
