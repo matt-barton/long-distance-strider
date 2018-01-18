@@ -2,13 +2,21 @@ extend default
 
 block content
 
-  div#runner_details
-    p.bold.
+  div.runner-details
+    p.name.
       #{name}
+
+    div.gender
+      p.gender Gender
+      input(type='hidden', value=_id, id='runner_id')
+      select#genderSelect
+        option(value='', selected= true) - Select -
+        option(value='Man', selected= gender === 'Man') Man
+        option(value='Woman', selected= gender === 'Woman')  Woman
 
     p
       if races.length > 0
-        table
+        table#races
           thead
             tr
               th.

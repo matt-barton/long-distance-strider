@@ -5,7 +5,7 @@ $('document').ready(function () {
   newRacesButton.click(function () {
     $.blockUI({ message: '<img src="/images/loading.gif" />' });
     $.post({
-      url: '/get-new-races',
+      url: '/race/get-new',
       success: function (res) {
         $.unblockUI();
         var msg = (res.length > 0 ? res.length : 'No') +

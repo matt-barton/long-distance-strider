@@ -5,7 +5,7 @@ $('document').ready(function () {
   ignoreButton.click(function () {
     $.blockUI({ message: '<img src="/images/loading.gif" />' });
     $.post({
-      url: '/ignore_race',
+      url: '/race/ignore',
       data: {
         id: $('#race_id').val()
       },
@@ -25,7 +25,7 @@ $('document').ready(function () {
   processButton.click(function () {
     $.blockUI({ message: '<img src="/images/loading.gif" />' });
     $.post({
-      url: '/process_race',
+      url: '/race/process',
       data: {
         id: $('#race_id').val()
       },

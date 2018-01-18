@@ -4,7 +4,7 @@ const express = require('express'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
   config = require('./lib/config'),
-  client = require('./client'),
+  api = require('./lib/api'),
   app = express(),
   port = process.env.PORT || 3000;
 
@@ -20,6 +20,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', client);
+app.use('/', api);
 
 app.listen(port, () => console.log('Application listening on port ' + port));
