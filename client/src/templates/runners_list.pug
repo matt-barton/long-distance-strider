@@ -2,7 +2,7 @@ extend default
 
 block content
 
-  div.runnersList
+  div.runners-list
     if runners.length > 0
       table
         thead
@@ -13,7 +13,7 @@ block content
               Total Distance
         tbody
           each runner in runners
-            tr
+            tr(class= 'gender-' + runner.gender)
               td 
                 a(href='/runner/' + runner._id) #{runner.name}
               td

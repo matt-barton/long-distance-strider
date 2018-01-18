@@ -158,21 +158,37 @@ button
 button:hover
   text-decoration: underline
 
-div.runnersList
+div.runners-list
   table
     border-bottom: 1px solid grey
 
+    tr.gender-unknown
+      background-color: #ccc;
+      
+    tr.gender-man
+      background-color: #9bf;
+      
+    tr.gender-woman
+      background-color: #fbb;
+      
     td
       padding: 2px
       border-top: 1px solid grey
       border-right: 1px solid grey
       border-left: 1px solid grey
 
+  a
+    color: #000;
+    text-decoration: none;
+
+  a:hover
+    text-decoration: underline;
+
 div.runner-details
   p.name
     font-weight: bold
     text-decoration: underline
-    
+
   p.gender
     font-weight: bold
     float: left
