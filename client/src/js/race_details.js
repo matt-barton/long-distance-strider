@@ -1,6 +1,7 @@
 $('document').ready(function () {
-  var ignoreButton = $('div#race_details button#ignore');
-  var processButton = $('div#race_details button#process');
+  var ignoreButton = $('div#race_details button#ignore'),
+    processButton = $('div#race_details button#process'),
+    rescanButton = $('div#race_details button#rescan');
 
   ignoreButton.click(function () {
     $.blockUI({ message: '<img src="/images/loading.gif" />' });
@@ -45,4 +46,21 @@ $('document').ready(function () {
     });
   });
     
+  rescanButton.click(function () {
+    var raceId = $('#race_id').val();
+    $.blockUI({ message: '<img src="/images/loading.gif" />' });
+    $.post({
+      url: '/race/rescan/' + raceId,
+      success: function (result) {
+        alertify.alert('Rescan', 'OK', function () {
+          window.location.replace('/race/' + raceId);
+          $.unblockUI();
+        });
+      },
+      error: function (e) {
+        $.unblockUI();
+        alertify.alert('Error!', e.message);
+      }
+    });
+  });
 });
