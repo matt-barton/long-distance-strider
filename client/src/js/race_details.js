@@ -1,6 +1,7 @@
 $('document').ready(function () {
   var ignoreButton = $('div#race_details button#ignore'),
     processButton = $('div#race_details button#process'),
+    markProcessedButton = $('div#race_details button#mark-processed'),
     rescanButton = $('div#race_details button#rescan');
 
   ignoreButton.click(function () {
@@ -45,7 +46,24 @@ $('document').ready(function () {
       }
     });
   });
-    
+
+  markProcessedButton.click(function () {
+    $.blockUI({ message: '<img src="/images/loading.gif" />' });
+    $.post({
+      url: '/race/mark-processed/' + $('#race_id').val(),
+      success: function () {
+        alertify.alert('Mark Race Processed', 'Race marked as processed. No runners created/updated.', function () {
+          window.location.replace('/');
+          $.unblockUI();
+        });
+      },
+      error: function (e) {
+        $.unblockUI();
+        alertify.alert('Error!', e.message);
+      }
+    });
+  });
+
   rescanButton.click(function () {
     var raceId = $('#race_id').val();
     $.blockUI({ message: '<img src="/images/loading.gif" />' });
