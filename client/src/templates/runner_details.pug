@@ -4,18 +4,18 @@ block content
 
   div.runner-details
     p.name.
-      #{name}
+      #{runner.name}
 
     div.gender
       p.gender Gender
-      input(type='hidden', value=_id, id='runner_id')
-      select#genderSelect
+      input(type='hidden', value=runner._id, id='runner_id')
+      select#gender-select
         option(value='', selected= true) - Select -
-        option(value='man', selected= gender === 'man') Man
-        option(value='woman', selected= gender === 'woman')  Woman
+        option(value='man', selected= runner.gender === 'man') Man
+        option(value='woman', selected= runner.gender === 'woman')  Woman
 
     p
-      if races.length > 0
+      if runner.races.length > 0
         table#races
           thead
             tr
@@ -24,9 +24,25 @@ block content
               th.
                 Distance
           tbody
-            each race in races
+            each race in runner.races
               tr
                 td 
                   !=race.name
                 td 
                   !=race.distance
+
+    p
+      if unprocessedRaces.length > 0
+        button(id='add-race', title='Add Race') Add Race
+
+    div#add-race-form
+      fieldset#add-race
+        label Race
+        select.race-select
+          option(value='') -
+          each unprocessedRace in unprocessedRaces
+            option(value=unprocessedRace._id, data-distance=0 + unprocessedRace.distance) #{unprocessedRace.reportName}
+        label Distance
+        input(type='text', class='add-race-distance')
+        label   
+        button(class='submit-add-race') Submit
